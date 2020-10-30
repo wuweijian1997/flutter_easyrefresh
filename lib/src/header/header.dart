@@ -40,8 +40,7 @@ abstract class Header {
   });
 
   // 构造器
-  Widget builder(
-      BuildContext context,
+  Widget builder(BuildContext context,
       EasyRefresh easyRefresh,
       ValueNotifier<bool> focusNotifier,
       ValueNotifier<TaskState> taskNotifier,
@@ -70,8 +69,7 @@ abstract class Header {
   }
 
   // Header构造器
-  Widget contentBuilder(
-      BuildContext context,
+  Widget contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -95,22 +93,22 @@ class NotificationHeader extends Header {
   NotificationHeader({
     @required this.header,
     this.notifier,
-  })  : assert(
-          header != null,
-          'A non-null Header must be provided to a NotifierHeader.',
-        ),
+  })
+      : assert(
+  header != null,
+  'A non-null Header must be provided to a NotifierHeader.',
+  ),
         super(
-          extent: header.extent,
-          triggerDistance: header.triggerDistance,
-          float: header.float,
-          completeDuration: header.completeDuration,
-          enableInfiniteRefresh: header.enableInfiniteRefresh,
-          enableHapticFeedback: header.enableHapticFeedback,
-        );
+        extent: header.extent,
+        triggerDistance: header.triggerDistance,
+        float: header.float,
+        completeDuration: header.completeDuration,
+        enableInfiniteRefresh: header.enableInfiniteRefresh,
+        enableHapticFeedback: header.enableHapticFeedback,
+      );
 
   @override
-  Widget contentBuilder(
-      BuildContext context,
+  Widget contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -163,17 +161,16 @@ class CustomHeader extends Header {
     enableHapticFeedback = false,
     @required this.headerBuilder,
   }) : super(
-          extent: extent,
-          triggerDistance: triggerDistance,
-          float: float,
-          completeDuration: completeDuration,
-          enableInfiniteRefresh: enableInfiniteRefresh,
-          enableHapticFeedback: enableHapticFeedback,
-        );
+    extent: extent,
+    triggerDistance: triggerDistance,
+    float: float,
+    completeDuration: completeDuration,
+    enableInfiniteRefresh: enableInfiniteRefresh,
+    enableHapticFeedback: enableHapticFeedback,
+  );
 
   @override
-  Widget contentBuilder(
-      BuildContext context,
+  Widget contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -213,8 +210,7 @@ class LinkHeaderNotifier extends ChangeNotifier {
   bool success = true;
   bool noMore = false;
 
-  void contentBuilder(
-      BuildContext context,
+  void contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -246,23 +242,21 @@ class LinkHeaderNotifier extends ChangeNotifier {
 class LinkHeader extends Header {
   final LinkHeaderNotifier linkNotifier;
 
-  LinkHeader(
-    this.linkNotifier, {
+  LinkHeader(this.linkNotifier, {
     extent = 60.0,
     triggerDistance = 70.0,
     completeDuration,
     enableHapticFeedback = false,
   }) : super(
-          extent: extent,
-          triggerDistance: triggerDistance,
-          float: true,
-          completeDuration: completeDuration,
-          enableHapticFeedback: enableHapticFeedback,
-        );
+    extent: extent,
+    triggerDistance: triggerDistance,
+    float: true,
+    completeDuration: completeDuration,
+    enableHapticFeedback: enableHapticFeedback,
+  );
 
   @override
-  Widget contentBuilder(
-      BuildContext context,
+  Widget contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -355,27 +349,26 @@ class ClassicalHeader extends Header {
     this.textColor: Colors.black,
     this.infoColor: Colors.teal,
   }) : super(
-          extent: extent,
-          triggerDistance: triggerDistance,
-          float: float,
-          completeDuration: float
-              ? completeDuration == null
-                  ? Duration(
-                      milliseconds: 400,
-                    )
-                  : completeDuration +
-                      Duration(
-                        milliseconds: 400,
-                      )
-              : completeDuration,
-          enableInfiniteRefresh: enableInfiniteRefresh,
-          enableHapticFeedback: enableHapticFeedback,
-          overScroll: overScroll,
-        );
+    extent: extent,
+    triggerDistance: triggerDistance,
+    float: float,
+    completeDuration: float
+        ? completeDuration == null
+        ? Duration(
+      milliseconds: 400,
+    )
+        : completeDuration +
+        Duration(
+          milliseconds: 400,
+        )
+        : completeDuration,
+    enableInfiniteRefresh: enableInfiniteRefresh,
+    enableHapticFeedback: enableHapticFeedback,
+    overScroll: overScroll,
+  );
 
   @override
-  Widget contentBuilder(
-      BuildContext context,
+  Widget contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -407,8 +400,12 @@ class ClassicalHeader extends Header {
 class ClassicalHeaderWidget extends StatefulWidget {
   final ClassicalHeader classicalHeader;
   final RefreshMode refreshState;
+
+  ///下拉的范围
   final double pulledExtent;
   final double refreshTriggerPullDistance;
+
+  ///刷新指示器范围
   final double refreshIndicatorExtent;
   final AxisDirection axisDirection;
   final bool float;
@@ -417,19 +414,18 @@ class ClassicalHeaderWidget extends StatefulWidget {
   final bool success;
   final bool noMore;
 
-  ClassicalHeaderWidget(
-      {Key key,
-      this.refreshState,
-      this.classicalHeader,
-      this.pulledExtent,
-      this.refreshTriggerPullDistance,
-      this.refreshIndicatorExtent,
-      this.axisDirection,
-      this.float,
-      this.completeDuration,
-      this.enableInfiniteRefresh,
-      this.success,
-      this.noMore})
+  ClassicalHeaderWidget({Key key,
+    this.refreshState,
+    this.classicalHeader,
+    this.pulledExtent,
+    this.refreshTriggerPullDistance,
+    this.refreshIndicatorExtent,
+    this.axisDirection,
+    this.float,
+    this.completeDuration,
+    this.enableInfiniteRefresh,
+    this.success,
+    this.noMore})
       : super(key: key);
 
   @override
@@ -445,9 +441,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
 
   set overTriggerDistance(bool over) {
     if (_overTriggerDistance != over) {
-      _overTriggerDistance
-          ? _readyController.forward()
-          : _restoreController.forward();
+      _overTriggerDistance ? _controller.forward() : _controller.reverse();
       _overTriggerDistance = over;
     }
   }
@@ -477,44 +471,17 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
     return widget.classicalHeader.noMoreText ?? 'No more';
   }
 
-  String get _infoText {
-    return widget.classicalHeader.infoText ?? 'Update at %T';
-  }
-
   // 是否刷新完成
   bool _refreshFinish = false;
 
   set refreshFinish(bool finish) {
     if (_refreshFinish != finish) {
-      if (finish && widget.float) {
-        Future.delayed(widget.completeDuration - Duration(milliseconds: 400),
-            () {
-          if (mounted) {
-            _floatBackController.forward();
-          }
-        });
-        Future.delayed(widget.completeDuration, () {
-          _floatBackDistance = null;
-          _refreshFinish = false;
-        });
-      }
       _refreshFinish = finish;
     }
   }
 
   // 动画
-  AnimationController _readyController;
-  Animation<double> _readyAnimation;
-  AnimationController _restoreController;
-  Animation<double> _restoreAnimation;
-  AnimationController _floatBackController;
-  Animation<double> _floatBackAnimation;
-
-  // Icon旋转度
-  double _iconRotationValue = 1.0;
-
-  // 浮动时,收起距离
-  double _floatBackDistance;
+  AnimationController _controller;
 
   // 显示文字
   String get _showText {
@@ -560,93 +527,25 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
     return Icons.done;
   }
 
-  // 更新时间
-  DateTime _dateTime;
-
-  // 获取更多信息
-  String get _infoTextStr {
-    if (widget.refreshState == RefreshMode.refreshed) {
-      _dateTime = DateTime.now();
-    }
-    String fillChar = _dateTime.minute < 10 ? "0" : "";
-    return _infoText.replaceAll(
-        "%T", "${_dateTime.hour}:$fillChar${_dateTime.minute}");
-  }
-
   @override
   void initState() {
     super.initState();
-    // 初始化时间
-    _dateTime = DateTime.now();
-    // 准备动画
-    _readyController = new AnimationController(
-        duration: const Duration(milliseconds: 200), vsync: this);
-    _readyAnimation = new Tween(begin: 0.5, end: 1.0).animate(_readyController)
-      ..addListener(() {
-        setState(() {
-          if (_readyAnimation.status != AnimationStatus.dismissed) {
-            _iconRotationValue = _readyAnimation.value;
-          }
-        });
-      });
-    _readyAnimation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _readyController.reset();
-      }
-    });
-    // 恢复动画
-    _restoreController = new AnimationController(
-        duration: const Duration(milliseconds: 200), vsync: this);
-    _restoreAnimation =
-        new Tween(begin: 1.0, end: 0.5).animate(_restoreController)
-          ..addListener(() {
-            setState(() {
-              if (_restoreAnimation.status != AnimationStatus.dismissed) {
-                _iconRotationValue = _restoreAnimation.value;
-              }
-            });
-          });
-    _restoreAnimation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _restoreController.reset();
-      }
-    });
-    // float收起动画
-    _floatBackController = new AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
-    _floatBackAnimation =
-        new Tween(begin: widget.refreshIndicatorExtent, end: 0.0)
-            .animate(_floatBackController)
-              ..addListener(() {
-                setState(() {
-                  if (_floatBackAnimation.status != AnimationStatus.dismissed) {
-                    _floatBackDistance = _floatBackAnimation.value;
-                  }
-                });
-              });
-    _floatBackAnimation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _floatBackController.reset();
-      }
-    });
+    _controller = AnimationController(
+        value: 1,
+        lowerBound: .5,
+        upperBound: 1,
+        duration: const Duration(milliseconds: 200),
+        vsync: this);
   }
 
   @override
   void dispose() {
-    _readyController.dispose();
-    _restoreController.dispose();
-    _floatBackController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // 是否为垂直方向
-    bool isVertical = widget.axisDirection == AxisDirection.down ||
-        widget.axisDirection == AxisDirection.up;
-    // 是否反向
-    bool isReverse = widget.axisDirection == AxisDirection.up ||
-        widget.axisDirection == AxisDirection.left;
     // 是否到达触发刷新距离
     overTriggerDistance = widget.refreshState != RefreshMode.inactive &&
         widget.pulledExtent >= widget.refreshTriggerPullDistance;
@@ -656,71 +555,22 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
     return Stack(
       children: <Widget>[
         Positioned(
-          top: !isVertical
-              ? 0.0
-              : isReverse
-                  ? _floatBackDistance == null
-                      ? 0.0
-                      : (widget.refreshIndicatorExtent - _floatBackDistance)
-                  : null,
-          bottom: !isVertical
-              ? 0.0
-              : !isReverse
-                  ? _floatBackDistance == null
-                      ? 0.0
-                      : (widget.refreshIndicatorExtent - _floatBackDistance)
-                  : null,
-          left: isVertical
-              ? 0.0
-              : isReverse
-                  ? _floatBackDistance == null
-                      ? 0.0
-                      : (widget.refreshIndicatorExtent - _floatBackDistance)
-                  : null,
-          right: isVertical
-              ? 0.0
-              : !isReverse
-                  ? _floatBackDistance == null
-                      ? 0.0
-                      : (widget.refreshIndicatorExtent - _floatBackDistance)
-                  : null,
+          top: null,
+          bottom: .0,
+          left: 0,
+          right: 0,
           child: Container(
-            alignment: widget.classicalHeader.alignment ?? isVertical
-                ? isReverse
-                    ? Alignment.topCenter
-                    : Alignment.bottomCenter
-                : !isReverse
-                    ? Alignment.centerRight
-                    : Alignment.centerLeft,
-            width: isVertical
-                ? double.infinity
-                : _floatBackDistance == null
-                    ? (widget.refreshIndicatorExtent > widget.pulledExtent
-                        ? widget.refreshIndicatorExtent
-                        : widget.pulledExtent)
-                    : widget.refreshIndicatorExtent,
-            height: isVertical
-                ? _floatBackDistance == null
-                    ? (widget.refreshIndicatorExtent > widget.pulledExtent
-                        ? widget.refreshIndicatorExtent
-                        : widget.pulledExtent)
-                    : widget.refreshIndicatorExtent
-                : double.infinity,
+            alignment: Alignment.bottomCenter,
+            width: double.infinity,
+            height: max(widget.refreshIndicatorExtent, widget.pulledExtent),
             color: widget.classicalHeader.bgColor,
             child: SizedBox(
-              height:
-                  isVertical ? widget.refreshIndicatorExtent : double.infinity,
-              width:
-                  !isVertical ? widget.refreshIndicatorExtent : double.infinity,
-              child: isVertical
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: _buildContent(isVertical, isReverse),
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: _buildContent(isVertical, isReverse),
-                    ),
+              height: widget.refreshIndicatorExtent,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildContent(),
+              ),
             ),
           ),
         ),
@@ -729,116 +579,73 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   }
 
   // 构建显示内容
-  List<Widget> _buildContent(bool isVertical, bool isReverse) {
-    return isVertical
-        ? <Widget>[
-            Expanded(
-              flex: 2,
-              child: Container(
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(
-                  right: 10.0,
-                ),
-                child: (widget.refreshState == RefreshMode.refresh ||
-                            widget.refreshState == RefreshMode.armed) &&
-                        !widget.noMore
-                    ? Container(
-                        width: 20.0,
-                        height: 20.0,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                          valueColor: AlwaysStoppedAnimation(
-                            widget.classicalHeader.textColor,
-                          ),
-                        ),
-                      )
-                    : widget.refreshState == RefreshMode.refreshed ||
-                            widget.refreshState == RefreshMode.done ||
-                            (widget.enableInfiniteRefresh &&
-                                widget.refreshState != RefreshMode.refreshed) ||
-                            widget.noMore
-                        ? Icon(
-                            _finishedIcon,
-                            color: widget.classicalHeader.textColor,
-                          )
-                        : Transform.rotate(
-                            child: Icon(
-                              isReverse
-                                  ? Icons.arrow_upward
-                                  : Icons.arrow_downward,
-                              color: widget.classicalHeader.textColor,
-                            ),
-                            angle: 2 * pi * _iconRotationValue,
-                          ),
+  List<Widget> _buildContent() {
+    return <Widget>[
+      Expanded(
+        flex: 2,
+        child: Container(
+          alignment: Alignment.centerRight,
+          padding: EdgeInsets.only(
+            right: 10.0,
+          ),
+          child: (widget.refreshState == RefreshMode.refresh ||
+              widget.refreshState == RefreshMode.armed) &&
+              !widget.noMore
+              ? Container(
+            width: 20.0,
+            height: 20.0,
+            child: CircularProgressIndicator(
+              strokeWidth: 2.0,
+              valueColor: AlwaysStoppedAnimation(
+                widget.classicalHeader.textColor,
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    _showText,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: widget.classicalHeader.textColor,
-                    ),
-                  ),
-                  widget.classicalHeader.showInfo
-                      ? Container(
-                          margin: EdgeInsets.only(
-                            top: 2.0,
-                          ),
-                          child: Text(
-                            _infoTextStr,
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              color: widget.classicalHeader.infoColor,
-                            ),
-                          ),
-                        )
-                      : Container(),
-                ],
+          )
+              : widget.refreshState == RefreshMode.refreshed ||
+              widget.refreshState == RefreshMode.done ||
+              (widget.enableInfiniteRefresh &&
+                  widget.refreshState != RefreshMode.refreshed) ||
+              widget.noMore
+              ? Icon(
+            _finishedIcon,
+            color: widget.classicalHeader.textColor,
+          )
+              : AnimatedBuilder(
+            animation: _controller,
+            builder: (_, Widget child) {
+              return Transform.rotate(
+                child: child,
+                angle: 2 * pi * _controller.value,
+              );
+            },
+            child: Icon(
+              Icons.arrow_downward,
+              color: widget.classicalHeader.textColor,
+            ),
+          ),
+        ),
+      ),
+      Expanded(
+        flex: 3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              _showText,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: widget.classicalHeader.textColor,
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: SizedBox(),
-            ),
-          ]
-        : <Widget>[
-            Container(
-              child: widget.refreshState == RefreshMode.refresh ||
-                      widget.refreshState == RefreshMode.armed
-                  ? Container(
-                      width: 20.0,
-                      height: 20.0,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.0,
-                        valueColor: AlwaysStoppedAnimation(
-                          widget.classicalHeader.textColor,
-                        ),
-                      ),
-                    )
-                  : widget.refreshState == RefreshMode.refreshed ||
-                          widget.refreshState == RefreshMode.done ||
-                          (widget.enableInfiniteRefresh &&
-                              widget.refreshState != RefreshMode.refreshed) ||
-                          widget.noMore
-                      ? Icon(
-                          _finishedIcon,
-                          color: widget.classicalHeader.textColor,
-                        )
-                      : Transform.rotate(
-                          child: Icon(
-                            isReverse ? Icons.arrow_back : Icons.arrow_forward,
-                            color: widget.classicalHeader.textColor,
-                          ),
-                          angle: 2 * pi * _iconRotationValue,
-                        ),
-            )
-          ];
+          ],
+        ),
+      ),
+      Expanded(
+        flex: 2,
+        child: SizedBox(),
+      ),
+    ];
   }
 }
 
@@ -849,16 +656,15 @@ class FirstRefreshHeader extends Header {
 
   FirstRefreshHeader(this.child)
       : super(
-          extent: double.infinity,
-          triggerDistance: 60.0,
-          float: true,
-          enableInfiniteRefresh: false,
-          enableHapticFeedback: false,
-        );
+    extent: double.infinity,
+    triggerDistance: 60.0,
+    float: true,
+    enableInfiniteRefresh: false,
+    enableHapticFeedback: false,
+  );
 
   @override
-  Widget contentBuilder(
-      BuildContext context,
+  Widget contentBuilder(BuildContext context,
       RefreshMode refreshState,
       double pulledExtent,
       double refreshTriggerPullDistance,
@@ -870,9 +676,9 @@ class FirstRefreshHeader extends Header {
       bool success,
       bool noMore) {
     return (refreshState == RefreshMode.armed ||
-                refreshState == RefreshMode.refresh) &&
-            pulledExtent >
-                refreshTriggerPullDistance + EasyRefresh.callOverExtent
+        refreshState == RefreshMode.refresh) &&
+        pulledExtent >
+            refreshTriggerPullDistance + EasyRefresh.callOverExtent
         ? child
         : Container();
   }
